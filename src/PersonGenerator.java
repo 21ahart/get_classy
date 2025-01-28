@@ -10,13 +10,12 @@ public class PersonGenerator {
         boolean moreData = true;
 
         while (moreData) {
-            String id = SafeInput.getNonZeroLenString(in, "Enter ID");
             String firstName = SafeInput.getNonZeroLenString(in, "Enter First Name");
             String lastName = SafeInput.getNonZeroLenString(in, "Enter Last Name");
             String title = SafeInput.getNonZeroLenString(in, "Enter Title");
             int yearOfBirth = SafeInput.getRangedInt(in, "Enter Year of Birth", 0, 2025);
 
-            people.add(new Person(id, firstName, lastName, title, yearOfBirth));
+            people.add(new Person(firstName, lastName, title, yearOfBirth));
 
             moreData = SafeInput.getYNConfirm(in, "Do you want to enter another person?");
         }
@@ -26,10 +25,10 @@ public class PersonGenerator {
     }
 
     private static void saveToFile(ArrayList<Person> people, String fileName) {
-        String relativePath = "pract01/src/main/resources/" + fileName;
+        String relativePath = "C:\\Users\\aiden\\code\\get_classy\\src\\data\\" + fileName;
         try (PrintWriter writer = new PrintWriter(new File(relativePath))) {
             for (Person person : people) {
-                writer.println(person);
+                writer.println(person.toCSV());
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error saving to file: " + e.getMessage());

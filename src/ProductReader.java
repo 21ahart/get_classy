@@ -41,13 +41,12 @@ public class ProductReader {
         try (Scanner fileScanner = new Scanner(new File(fileName))) {
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
-                String[] parts = line.split(", ");
+                String[] parts = line.split(",");
                 if (parts.length == 4) {
-                    String id = parts[0];
                     String name = parts[1];
                     String description = parts[2];
                     double price = Double.parseDouble(parts[3]);
-                    products.add(new Product(id, name, description, price));
+                    products.add(new Product(name, description, price));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -60,7 +59,7 @@ public class ProductReader {
         System.out.printf("%-10s %-15s %-25s %-10s%n", "ID#", "Name", "Description", "Price");
         System.out.println("===========================================================================");
         for (Product product : products) {
-            System.out.printf("%-10s %-15s %-25s %-10.2f%n", product.getId(), product.getName(), product.getDescription(), product.getPrice());
+            System.out.printf("%-10s %-15s %-25s %-10.2f%n", product.getId(), product.name(), product.description(), product.cost());
         }
     }
 }

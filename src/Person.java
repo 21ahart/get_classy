@@ -5,6 +5,7 @@ import java.util.Calendar;
  * birth.
  */
 public class Person {
+    private static int nextId = 1;
     private String id;
     private String firstName;
     private String lastName;
@@ -18,14 +19,59 @@ public class Person {
      * @param firstName   the first name of the person
      * @param lastName    the last name of the person
      * @param title       the title of the person (e.g., Mr., Ms., Dr.)
-     * @param yearOfBirth the year of birth of the person
+     * @param YOB the year of birth of the person
      */
-    public Person(String id, String firstName, String lastName, String title, int yearOfBirth) {
-        this.id = id;
+    public Person(String firstName, String lastName, String title, int YOB) {
+        this.id = nextId++ + "";
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
-        this.YOB = yearOfBirth;
+        this.YOB = YOB;
+    }
+
+    /**
+     * Returns the ID of the person.
+     *
+     * @return the ID of the person
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Returns the first name of the person.
+     *
+     * @return the first name of the person
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Returns the last name of the person.
+     *
+     * @return the last name of the person
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Returns the title of the person.
+     *
+     * @return the title of the person
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Returns the year of birth of the person.
+     *
+     * @return the year of birth of the person
+     */
+    public int getYearOfBirth() {
+        return YOB;
     }
 
     /**

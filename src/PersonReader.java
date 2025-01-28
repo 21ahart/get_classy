@@ -7,7 +7,6 @@ import javax.swing.JFileChooser;
 public class PersonReader {
     public static void main(String[] args) {
         ArrayList<Person> people = new ArrayList<>();
-        Scanner in = new Scanner(System.in);
         boolean fileIsValid = false;
 
         while (!fileIsValid) {
@@ -26,7 +25,6 @@ public class PersonReader {
         }
 
         displayPeople(people);
-        in.close();
     }
 
     private static String chooseFile() {
@@ -43,14 +41,13 @@ public class PersonReader {
         try (Scanner fileScanner = new Scanner(new File(fileName))) {
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
-                String[] parts = line.split(", ");
+                String[] parts = line.split(",");
                 if (parts.length == 5) {
-                    String id = parts[0];
                     String firstName = parts[1];
                     String lastName = parts[2];
                     String title = parts[3];
                     int yearOfBirth = Integer.parseInt(parts[4]);
-                    people.add(new Person(id, firstName, lastName, title, yearOfBirth));
+                    people.add(new Person(firstName, lastName, title, yearOfBirth));
                 }
             }
         } catch (FileNotFoundException e) {
